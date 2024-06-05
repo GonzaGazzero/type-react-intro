@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FormAddTodo from "./components/FormAddTodo";
 
 interface Todo {
   text: string,
@@ -26,13 +27,17 @@ const App = () => {
   return (
     <div className="container">
       <h1>Todo</h1>
-      <form>
-        <label htmlFor="todo">
-          Todo
-          <input type="text" id="todo" placeholder="Ingrese Todo" />
-          <button type="submit">Add todo</button>
-        </label>
-      </form>
+      <FormAddTodo />
+      <div>
+        {todos.map((todo) => (
+          <article key={todo.text}>
+            <label htmlFor="todo">
+              <input type="checkbox" checked={todo.complete} />
+              {todo.text}
+            </label>
+          </article>
+        ))}
+      </div>
     </div>
   );
 };
